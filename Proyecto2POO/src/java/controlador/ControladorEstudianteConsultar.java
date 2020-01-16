@@ -51,18 +51,18 @@ public class ControladorEstudianteConsultar extends HttpServlet {
             modelo = dao.obtenerEstudiante(request.getParameter("txtCarnet"));
             response.getWriter().println("<!DOCTYPE html>");
             response.getWriter().println("<html xmlns=\"http://www.w3.org/1999/xhtml\" \n" +
-"      xmlns:h=\"http://xmlns.jcp.org/jsf/html\">");
+                "xmlns:h=\"http://xmlns.jcp.org/jsf/html\">");
             response.getWriter().println("<h:head>");
             response.getWriter().println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> </meta>");
             response.getWriter().println("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" \n" +
-"              integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\"> </link>");
+                "integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\"> </link>");
             response.getWriter().println("<title>BibliotecaTec</title>");            
             response.getWriter().println("</h:head>");
             response.getWriter().println("<h:body>");
             
             response.getWriter().println("<div class=\"container mt-4 col-lg-10\">");
             response.getWriter().println("<div class=\"card col-sm-10\" >");
-            response.getWriter().println("<h1 class=\"card-body\">Información del estudiante</h1>");
+            response.getWriter().println("<h1 class=\"card-body\">Información de las reservas del estudiante</h1>");
             response.getWriter().println("<div class=\"card-body\">");
             
             //Empiezan los datos
@@ -110,6 +110,8 @@ public class ControladorEstudianteConsultar extends HttpServlet {
               response.getWriter().println("<label>Hora Inicio: "+ reservasTotales.get(contador).getHoraInicio()+" </label>");
               response.getWriter().println("<br>");
               response.getWriter().println("<label>Hora Fin: "+ reservasTotales.get(contador).getHoraFinal()+" </label>");
+              response.getWriter().println("<br>");
+              response.getWriter().println("<label>Número reserva: "+ reservasTotales.get(contador).getIdReserva()+" </label>");
               response.getWriter().println("<br></br>");
               response.getWriter().println("</div>");
               contador++;
@@ -156,7 +158,30 @@ public class ControladorEstudianteConsultar extends HttpServlet {
             response.getWriter().println("</html>");
             
           }else{
-            System.out.println("no existe");
+            response.getWriter().println("<!DOCTYPE html>");
+            response.getWriter().println("<html xmlns=\"http://www.w3.org/1999/xhtml\" \n" +
+"               xmlns:h=\"http://xmlns.jcp.org/jsf/html\">");
+            response.getWriter().println("<h:head>");
+            response.getWriter().println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> </meta>");
+            response.getWriter().println("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" \n" +
+"               integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\"> </link>");
+            response.getWriter().println("<title>BibliotecaTec</title>");            
+            response.getWriter().println("</h:head>");
+            response.getWriter().println("<h:body>");
+            response.getWriter().println("<div class=\"container mt-4 col-lg-7\">");
+            response.getWriter().println("<div class=\"card col-sm-7\" >");
+            response.getWriter().println("<div class=\"card-body\" class=\"card-body text-center\">");
+            
+            response.getWriter().println("<form class=\"form-sign\" action=\"ConsultarEstudiante.xhtml\" method=\"POST\">");
+            response.getWriter().println("<h2 class=\"card-body\">El estudiante no existe</h2>");
+            response.getWriter().println("<input type=\"submit\" value=\"Volver\" class=\"btn btn-primary btn-block\" > </input>");
+            
+            response.getWriter().println("</div>");
+            response.getWriter().println("</div>");
+            response.getWriter().println("</div>");
+            
+            response.getWriter().println("</h:body>");
+            response.getWriter().println("</html>");
           }
         }
     }
