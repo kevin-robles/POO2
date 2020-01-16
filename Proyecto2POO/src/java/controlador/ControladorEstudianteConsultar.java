@@ -5,12 +5,14 @@
  */
 package controlador;
 
+import dao.EstudianteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Estudiante;
 
 /**
  *
@@ -18,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControladorEstudianteConsultar extends HttpServlet {
 
+    Estudiante modelo = new Estudiante();
+    EstudianteDao dao = new EstudianteDao();
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,16 +36,15 @@ public class ControladorEstudianteConsultar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorEstudianteConsultar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorEstudianteConsultar at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+          if(dao.existeEstudiante(request.getParameter("txtCarnet"))){
+              
+            System.out.println("si existe");
+            modelo = dao.obtenerEstudiante(request.getParameter("txtCarnet"));
+            response.sendRedirect("ConsultarEstudiante2.xhtml");
+            
+          }else{
+            System.out.println("no existe");
+          }
         }
     }
 

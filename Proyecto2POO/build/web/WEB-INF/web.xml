@@ -41,6 +41,10 @@
         <servlet-name>ControladorReservaCancelar</servlet-name>
         <servlet-class>controlador.ControladorReservaCancelar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorEstudianteConsultar2</servlet-name>
+        <servlet-class>controlador.ControladorEstudianteConsultar2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -76,6 +80,10 @@
     <servlet-mapping>
         <servlet-name>ControladorReservaCancelar</servlet-name>
         <url-pattern>/ControladorReservaCancelar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorEstudianteConsultar2</servlet-name>
+        <url-pattern>/ControladorEstudianteConsultar2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

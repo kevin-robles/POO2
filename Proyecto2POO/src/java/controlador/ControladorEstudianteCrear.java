@@ -40,6 +40,7 @@ public class ControladorEstudianteCrear extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
           if(dao.existeEstudiante(request.getParameter("txtCarnet"))){
+ 
             response.getWriter().write("El estudiante ya ha sido agregado");
             response.sendRedirect("IngresarEstudiante.xhtml");
           }else{
