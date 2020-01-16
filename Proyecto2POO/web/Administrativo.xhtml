@@ -1,33 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Administrativo</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> </meta>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> </link>
+        <title>Bibliotec </title>
+    </h:head>
+    <h:body>
         <div class="container mt-4 col-lg-4">
             <div class="card col-sm-10" >
                 <div class="card-body text-center">
-                    <form class="form-sign" action="IngresarEstudiante.xhtml" method="GET">
+                    <form class="form-sign" action="IngresarEstudiante.xhtml" method="POST">
                         <div class="form-group">
                             <label> Ingresar estudiante</label>
                         </div>
-                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                         <input type="submit" value="Aceptar" class="btn btn-primary btn-block" > </input>
                         <a href="index.jsp"></a>
                     </form>                        
                 </div>
                 <div class="card-body text-center">
-                    <form class="form-sign" action="ConsultarEstudiante.xhtml" method="GET">
+                    <form class="form-sign" action="ConsultarEstudiante.xhtml" method="POST">
                         <div class="form-group">
                             <label> Consultar estudiante</label>
                         </div>
-                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                         <input type="submit" value="Aceptar" class="btn btn-primary btn-block" > </input>
                         <a href="index.jsp"></a>
                     </form>                        
                 </div>
@@ -36,7 +34,7 @@ and open the template in the editor.
                         <div class="form-group">
                             <label> Crear reserva</label>
                         </div>
-                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                         <input type="submit" value="Aceptar" class="btn btn-primary btn-block" > </input>
                         <a href="index.jsp"></a>
                     </form>                        
                 </div>
@@ -45,7 +43,7 @@ and open the template in the editor.
                         <div class="form-group">
                             <label> Consultar reserva</label>
                         </div>
-                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                         <input type="submit" value="Aceptar" class="btn btn-primary btn-block" > </input>
                         <a href="index.jsp"></a>
                     </form>                        
                 </div>
@@ -54,12 +52,10 @@ and open the template in the editor.
                         <div class="form-group">
                             <label> Cancelar reserva</label>
                         </div>
-                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
-                        <a href="index.jsp"></a>
+                         <input type="submit" value="Aceptar" class="btn btn-primary btn-block" > </input>
                     </form>                        
-                </div>
+                </div>                        
             </div>
         </div>
-        
-    </body>
+    </h:body>
 </html>
