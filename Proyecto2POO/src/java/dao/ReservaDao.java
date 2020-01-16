@@ -174,11 +174,11 @@ public class ReservaDao {
    * @return true de existir, false de lo contrario
    * @throws SQLException 
    */
-  public boolean validarReserva(String idReserva) throws SQLException{
+  public boolean validarReserva(int idReserva) throws SQLException{
     Connection conexion = ConexionBD.getConexion();
     PreparedStatement consulta = conexion.prepareStatement("select * from esquema.reserva where "
         + "idReserva=?;");
-    consulta.setString(1, idReserva);
+    consulta.setInt(1, idReserva);
     ResultSet respuesta = consulta.executeQuery();
 
     return respuesta.next();
@@ -259,11 +259,11 @@ public class ReservaDao {
    * @return true de ser verdad, false de lo contrario
    * @throws SQLException 
    */
-  public boolean reservaCancelada(String pReserva) throws SQLException{
+  public boolean reservaCancelada(int pReserva) throws SQLException{
     Connection conexion = ConexionBD.getConexion();
     PreparedStatement consulta = conexion.prepareStatement
         ("select estado from esquema.reserva where idReserva=?;");
-    consulta.setString(1, pReserva);
+    consulta.setInt(1, pReserva);
     ResultSet respuesta = consulta.executeQuery();
     String estado = "";
     while(respuesta.next()){
@@ -325,6 +325,7 @@ public class ReservaDao {
       while(respuesta.next()){
         bandera = respuesta.getInt(1);
       }
+      System.out.println(bandera);
       if(bandera == 1){
         return true;
       }else{
@@ -335,7 +336,6 @@ public class ReservaDao {
       System.out.println(e);
       return false;
     }
-  
   }
   
 }
