@@ -40,8 +40,7 @@ public class IncidenteDao {
       System.out.println(e);
     }
     return incidentes;
-  }
-    
+  }  
   /**
    * Metodo para agregar un incidente en la base de datos
    * @param pIncidente Objeto incidente

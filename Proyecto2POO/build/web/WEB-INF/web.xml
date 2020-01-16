@@ -45,6 +45,10 @@
         <servlet-name>ControladorEstudianteConsultar2</servlet-name>
         <servlet-class>controlador.ControladorEstudianteConsultar2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorConsultarEstudiante2</servlet-name>
+        <servlet-class>controlador.ControladorConsultarEstudiante2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -84,6 +88,10 @@
     <servlet-mapping>
         <servlet-name>ControladorEstudianteConsultar2</servlet-name>
         <url-pattern>/ControladorEstudianteConsultar2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorConsultarEstudiante2</servlet-name>
+        <url-pattern>/ControladorConsultarEstudiante2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
