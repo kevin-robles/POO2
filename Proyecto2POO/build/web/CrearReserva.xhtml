@@ -1,16 +1,128 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> </meta>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> </link>
+        <title>Bibliotec </title>
+    </h:head>
+    <h:body>
+        <div class="container mt-4 col-lg-4">
+            <div class="card col-sm-10" >
+                <div class="card-body text-center">
+                    <form class="form-sign" action="ControladorReservaCrear" method="POST">
+                        <div class="form-group">
+                            <h3>Nueva Reserva </h3> 
+                        </div>
+                        <div class="form-group">
+                            <h6> Fecha de solicitud</h6>
+                            <input type="date" name="txtfechasolicitud" class="form-control"> </input>     
+                        </div>
+                        <div class="form-group">
+                            <h6> Hora Inicio</h6>
+                            <br></br>
+                            <select name="txthorainicio">
+                            <option value="00:00">Cerrado</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            </select> 
+                        </div>
+                        
+                        <div class="form-group">
+                            <h6> Hora Final</h6>
+                            <br></br>
+                            <select name="txthorafinal">
+                            <option value="00:00">Cerrado</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            </select>     
+                        </div>
+                        <div class="form-group">
+                            <h6> Capacidad Mínima</h6>
+                            <input type="number" name="txtcapacidadminima" class="form-control"> </input>     
+                        </div>
+                        <div class="form-group">
+                            <h4> Recursos</h4>
+                            <label class="container">Lapicero
+                            <input type="checkbox"  name="recursos" value="lapicero"></input>
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Proyector
+                            <input type="checkbox" name="recursos" value="proyector"></input>
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Borrador
+                            <input type="checkbox" name="recursos" value="borrador"></input>
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Silla
+                            <input type="checkbox" name="recursos" value="silla"></input>
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Mesa
+                            <input type="checkbox" name="recursos" value="mesa"></input>
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container">Pizarra
+                            <input type="checkbox" name="recursos" value="pizarra"></input>
+                            <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <input type="submit" value="Aceptar" class="btn btn-primary btn-block" > </input>
+                    </form>                        
+                </div>
+            </div>
+        </div>
+    </h:body>
 </html>
