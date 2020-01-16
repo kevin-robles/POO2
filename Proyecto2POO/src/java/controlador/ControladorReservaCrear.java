@@ -4,19 +4,26 @@
  * and open the template in the editor.
  */
 package controlador;
-
+import dao.SalaDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Recurso;
 
 /**
  *
  * @author Oscar Andres
  */
 public class ControladorReservaCrear extends HttpServlet {
+    SalaDao dao = new SalaDao();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,19 +35,39 @@ public class ControladorReservaCrear extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorReservaCrear</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorReservaCrear at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String fechaSolicitudtxt = request.getParameter("txtfechasolicitud");
+            String horaInicio = request.getParameter("txthorainicio");
+            String horaFinal = request.getParameter("txthorafinal");
+            String CapacidadMinimatxtx = request.getParameter("txtcapacidadminima");
+            String [] recursostxt = request.getParameterValues("recursos");
+            Date fechaSolicitud = null;
+            int capacidadMinima = 0;
+            
+            if(fechaSolicitudtxt.equals("")){
+              System.out.println(1);
+              return;
+              //no ingreso fecha
+            }else{
+              fechaSolicitud = Date.valueOf(fechaSolicitudtxt);  
+            }
+            if(CapacidadMinimatxtx.equals("")){
+              System.out.println(2);
+              return;
+              //no ingreso capacidad minima
+            }else{
+              capacidadMinima =  Integer.parseInt(CapacidadMinimatxtx);
+            }
+            ArrayList<Recurso> recursos =  new ArrayList<Recurso>();
+            for (int i = 0; i < recursostxt.length; i++) {
+              recursos.add(new Recurso(recursostxt[i]));
+            }
+            
+            ArrayList<String> salasDisponibles = dao.obtenerSalasDisponibles(fechaSolicitud, horaInicio, horaFinal, capacidadMinima, recursos);
+            System.out.println(salasDisponibles);
+            response.sendRedirect("CrearReserva2.xhtml");
         }
     }
 
@@ -56,7 +83,11 @@ public class ControladorReservaCrear extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControladorReservaCrear.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +101,11 @@ public class ControladorReservaCrear extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControladorReservaCrear.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
