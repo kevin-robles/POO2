@@ -5,12 +5,16 @@
  */
 package controlador;
 
+import dao.EstudianteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Estudiante;
 
 /**
  *
@@ -18,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControladorEstudianteCrear extends HttpServlet {
 
+    Estudiante modelo = new Estudiante();
+    EstudianteDao dao = new EstudianteDao();
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,15 +39,20 @@ public class ControladorEstudianteCrear extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorEstudianteCrear</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorEstudianteCrear at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+          if(dao.existeEstudiante(request.getParameter("txtCarnet"))){
+            response.getWriter().write("El estudiante ya ha sido agregado");
+            response.sendRedirect("IngresarEstudiante.xhtml");
+          }else{
+            modelo.setCarnet(request.getParameter("txtCarnet"));
+            modelo.setNombre(request.getParameter("txtNombre"));
+            modelo.setApellido(request.getParameter("txtApellido"));
+            modelo.setCarrera(request.getParameter("txtCarrera"));
+            modelo.setCorreo(request.getParameter("txtCorreo"));
+            modelo.setTelefono(request.getParameter("txtTelefono"));
+            
+            dao.registrarEstudiante(modelo);
+            response.sendRedirect("Administrativo.xhtml");
+          }
         }
     }
 
