@@ -315,4 +315,27 @@ public class ReservaDao {
     return bandera;
   }
   
+  public boolean validarCancelarReserva(int idReserva){
+    try{
+      Connection conexion = ConexionBD.getConexion();
+      PreparedStatement consulta = conexion.prepareStatement("select esquema.validarCancelarReserva(?)");
+      consulta.setInt(1, idReserva);
+      ResultSet respuesta = consulta.executeQuery();
+      int bandera = 0;
+      while(respuesta.next()){
+        bandera = respuesta.getInt(1);
+      }
+      if(bandera == 1){
+        return true;
+      }else{
+        return false;
+      }
+    
+    }catch(SQLException e){
+      System.out.println(e);
+      return false;
+    }
+  
+  }
+  
 }
