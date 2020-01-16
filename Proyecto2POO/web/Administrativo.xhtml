@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Administrativo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class="container mt-4 col-lg-4">
+            <div class="card col-sm-10" >
+                <div class="card-body text-center">
+                    <form class="form-sign" action="ControladorEstudianteCrear" method="GET">
+                        <div class="form-group">
+                            <label> Ingresar estudiante</label>
+                        </div>
+                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                        <a href="index.jsp"></a>
+                    </form>                        
+                </div>
+                <div class="card-body text-center">
+                    <form class="form-sign" action="ControladorEstudianteConsultar" method="GET">
+                        <div class="form-group">
+                            <label> Consultar estudiante</label>
+                        </div>
+                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                        <a href="index.jsp"></a>
+                    </form>                        
+                </div>
+                <div class="card-body text-center">
+                    <form class="form-sign" action="ControladorReservaCrear" method="POST">
+                        <div class="form-group">
+                            <label> Crear reserva</label>
+                        </div>
+                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                        <a href="index.jsp"></a>
+                    </form>                        
+                </div>
+                <div class="card-body text-center">
+                    <form class="form-sign" action="ControladorReservaConsultar" method="POST">
+                        <div class="form-group">
+                            <label> Consultar reserva</label>
+                        </div>
+                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                        <a href="index.jsp"></a>
+                    </form>                        
+                </div>
+                <div class="card-body text-center">
+                    <form class="form-sign" action="ControladorReservaCancelar" method="POST">
+                        <div class="form-group">
+                            <label> Cancelar reserva</label>
+                        </div>
+                         <input type="submit" value="ingresar" class="btn btn-primary btn-block" > </input>
+                        <a href="index.jsp"></a>
+                    </form>                        
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
