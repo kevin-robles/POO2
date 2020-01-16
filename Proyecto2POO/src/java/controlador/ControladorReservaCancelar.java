@@ -110,7 +110,7 @@ public class ControladorReservaCancelar extends HttpServlet {
                   response.getWriter().println("<div class=\"card col-sm-7\" >");
                   response.getWriter().println("<div class=\"card-body\" class=\"card-body text-center\">");
 
-                  response.getWriter().println("<form class=\"form-sign\" action=\"ReservaCancelar.xhtml\" method=\"POST\">");
+                  response.getWriter().println("<form class=\"form-sign\" action=\"CancelarReserva.xhtml\" method=\"POST\">");
                   response.getWriter().println("<h2 class=\"card-body\">La reserva ya ha sido cancelada</h2>");
                   response.getWriter().println("<input type=\"submit\" value=\"Volver\" class=\"btn btn-primary btn-block\" > </input>");
 
@@ -136,7 +136,7 @@ public class ControladorReservaCancelar extends HttpServlet {
               response.getWriter().println("<div class=\"card col-sm-7\" >");
               response.getWriter().println("<div class=\"card-body\" class=\"card-body text-center\">");
 
-              response.getWriter().println("<form class=\"form-sign\" action=\"ReservaCancelar.xhtml\" method=\"POST\">");
+              response.getWriter().println("<form class=\"form-sign\" action=\"CancelarReserva.xhtml\" method=\"POST\">");
               response.getWriter().println("<h2 class=\"card-body\">La reserva no existe</h2>");
               response.getWriter().println("<input type=\"submit\" value=\"Volver\" class=\"btn btn-primary btn-block\" > </input>");                response.getWriter().println("</div>");
               response.getWriter().println("</div>");
