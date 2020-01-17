@@ -1,3 +1,9 @@
+/**
+ * Clase para administrar el inicio de sesión.
+ * 
+ * @author Daniel Quiros, Kevin Robles, Oscar Trejos
+ * @version 1.0
+ */
 package controlador;
 import dao.InicioSesionDao;
 import java.io.IOException;

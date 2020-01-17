@@ -1,3 +1,9 @@
+/**
+ * Clase para administrar la cancelación de ùna reserva.
+ * 
+ * @author Daniel Quiros, Kevin Robles, Oscar Trejos
+ * @version 1.0
+ */
 package controlador;
 import dao.ReservaDao;
 import java.io.IOException;
