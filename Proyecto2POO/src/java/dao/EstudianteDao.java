@@ -83,12 +83,12 @@ public class EstudianteDao {
       if(respuestaValidar.next()){
         return true;
       }
-      
-      return false;
+
     }catch(SQLException e){
       System.out.println(e);
       return false;
     }
+    return false;
   }
           
   public Estudiante obtenerEstudiante(String carnet){

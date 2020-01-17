@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Estudiante;
 import modelo.Reserva;
+import utilidad.MostrarMensaje;
 
 @WebServlet(name = "ControladorConfirmarReserva", urlPatterns = {"/ControladorConfirmarReserva"})
 public class ControladorConfirmarReserva extends HttpServlet {
   ReservaDao reservaDao = new ReservaDao();
   EstudianteDao estudianteDao = new EstudianteDao();
+  MostrarMensaje mensaje = new MostrarMensaje();
   /**
   * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
   * methods.
@@ -34,18 +36,26 @@ public class ControladorConfirmarReserva extends HttpServlet {
     String horaInicio = request.getParameter("txthorainicio");
     String horaFinal = request.getParameter("txthorafinal");
     String idSala = request.getParameter("txtidsala");
-    String carnetEstudiante = request.getParameter("carnet");
-    String asunto = request.getParameter("asunto");
+    String carnetEstudiante = request.getParameter("txtcarnet");
+    String asunto = request.getParameter("txtasunto");
     String estado = "Activa";
     int idReserva = reservaDao.obtenerProximoIdReserva();
+    System.out.println(fechaSolicitudtxt);
+    System.out.println(horaInicio);
+    System.out.println(horaFinal);
+    System.out.println(idSala);
+    System.out.println(carnetEstudiante);
+    System.out.println(asunto);
+    System.out.println(estado);
+    System.out.println(idReserva);
           
     if(!estudianteDao.existeEstudiante(carnetEstudiante)){
-      //estudiante no existe
+      mensaje.showMessage(response, "Estudiante no existe", "CrearReserva.xhtml");
       return;
     }
  
     if(reservaDao.reservasSemanales(carnetEstudiante) >= 3){
-      //estudiante tiene mas de 3 reservas en esta semana
+      mensaje.showMessage(response, "Estudiante posee más de al menos 3 reservas en esta semana", "CrearReserva.xhtml");
       return;
     }
     
@@ -54,7 +64,7 @@ public class ControladorConfirmarReserva extends HttpServlet {
     Reserva reserva = new Reserva();
     reserva.setAsunto(asunto);
     reserva.setEstado(estado);
-    reserva.setFechaSolicitud(new SimpleDateFormat("dd/MM/yyyy").parse(fechaSolicitudtxt));
+    reserva.setFechaSolicitud(new SimpleDateFormat("yyyy-MM-dd").parse(fechaSolicitudtxt));
     reserva.setHoraFinal(horaFinal);
     reserva.setHoraInicio(horaInicio);
     reserva.setIdReserva(idReserva);
@@ -62,9 +72,9 @@ public class ControladorConfirmarReserva extends HttpServlet {
     reserva.setOrganizador(estudiante);
           
     reservaDao.ingresarReserva(reserva);
-          
+  
     //se ingreso la reserva
-        
+    mensaje.showMessage(response, "Reserva creada", "CrearReserva.xhtml");
   }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

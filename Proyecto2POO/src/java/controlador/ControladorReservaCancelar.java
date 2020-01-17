@@ -9,9 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utilidad.MostrarMensaje;
 
 public class ControladorReservaCancelar extends HttpServlet {
   ReservaDao dao = new ReservaDao();
+  MostrarMensaje mensaje = new MostrarMensaje();
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,115 +31,40 @@ public class ControladorReservaCancelar extends HttpServlet {
     try (PrintWriter out = response.getWriter()) {
       if(request.getParameter("txtidreserva").equals("")){
         //no se ingreso nada
-        System.out.println(1);
+        mensaje.showMessage(response, "Debe ingresar el número de reserva", "CancelarReserva.xhtml");
         return;
       }
-        int idReserva = 0;
-        try{
-          idReserva = Integer.parseInt(request.getParameter("txtidreserva"));
-        }catch(NumberFormatException e){
-          //no es numero
-          System.out.println(2);
-          return;
-        }
-        //Si existe o no reserva
-        if(dao.validarReserva(idReserva)){
+      int idReserva = Integer.parseInt(request.getParameter("txtidreserva"));
 
-            //si reserva ya esta cancelada
-          if(!dao.reservaCancelada(idReserva)){
+      //Si existe o no reserva
+      if(!dao.validarReserva(idReserva)){
+        mensaje.showMessage(response, "La reserva no existe", "CancelarReserva.xhtml");
+        return;
+      }
 
-              //validar si se puede cancelar por la hora
-            if(dao.validarCancelarReserva(idReserva)){
+      //si reserva ya esta cancelada
+      if(dao.reservaCancelada(idReserva)){
+        mensaje.showMessage(response, "La reserva ya ha sido cancelada", "CancelarReserva.xhtml");
+        return;
+      }
 
-                //si se completo la cancelacion
-              if(dao.cancelarReserva(idReserva)){
-                  //se cancelo la reserva
-                  System.out.println(3);
-              }else{
-                  //hubo un error 
-                  System.out.println(3);
-              }    
+      //validar si se puede cancelar por la hora
+      if(!dao.validarCancelarReserva(idReserva)){
+        mensaje.showMessage(response, "Se debe cancelar la reserva al menos una hora antes de su inicio", "CancelarReserva.xhtml");
+        return;
+      }
 
-            }else{
-              response.getWriter().println("<!DOCTYPE html>");
-              response.getWriter().println("<html xmlns=\"http://www.w3.org/1999/xhtml\" \n" +
-                  "xmlns:h=\"http://xmlns.jcp.org/jsf/html\">");
-              response.getWriter().println("<h:head>");
-              response.getWriter().println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> </meta>");
-              response.getWriter().println("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" \n" +
-                "integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\"> </link>");
-              response.getWriter().println("<title>BibliotecaTec</title>");            
-              response.getWriter().println("</h:head>");
-              response.getWriter().println("<h:body>");
-              response.getWriter().println("<div class=\"container mt-4 col-lg-7\">");
-              response.getWriter().println("<div class=\"card col-sm-7\" >");
-              response.getWriter().println("<div class=\"card-body\" class=\"card-body text-center\">");
-
-              response.getWriter().println("<form class=\"form-sign\" action=\"CancelarReserva.xhtml\" method=\"POST\">");
-              response.getWriter().println("<h2 class=\"card-body\">La reserva se debe cancelar minimo con una hora de antiicipacion</h2>");
-              response.getWriter().println("<input type=\"submit\" value=\"Volver\" class=\"btn btn-primary btn-block\" > </input>");
-  
-              response.getWriter().println("</div>");
-              response.getWriter().println("</div>");
-              response.getWriter().println("</div>");
-
-              response.getWriter().println("</h:body>");
-              response.getWriter().println("</html>");
-            }
-
-          }else{
-            response.getWriter().println("<!DOCTYPE html>");
-            response.getWriter().println("<html xmlns=\"http://www.w3.org/1999/xhtml\" \n" +
-                "xmlns:h=\"http://xmlns.jcp.org/jsf/html\">");
-            response.getWriter().println("<h:head>");
-            response.getWriter().println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> </meta>");
-            response.getWriter().println("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" \n" +
-                "integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\"> </link>");
-            response.getWriter().println("<title>BibliotecaTec</title>");            
-            response.getWriter().println("</h:head>");
-            response.getWriter().println("<h:body>");
-            response.getWriter().println("<div class=\"container mt-4 col-lg-7\">");
-            response.getWriter().println("<div class=\"card col-sm-7\" >");
-            response.getWriter().println("<div class=\"card-body\" class=\"card-body text-center\">");
-
-            response.getWriter().println("<form class=\"form-sign\" action=\"CancelarReserva.xhtml\" method=\"POST\">");
-            response.getWriter().println("<h2 class=\"card-body\">La reserva ya ha sido cancelada</h2>");
-            response.getWriter().println("<input type=\"submit\" value=\"Volver\" class=\"btn btn-primary btn-block\" > </input>");
-
-            response.getWriter().println("</div>");
-            response.getWriter().println("</div>");
-            response.getWriter().println("</div>");
-
-            response.getWriter().println("</h:body>");
-            response.getWriter().println("</html>");
-          }
-        }else{
-          response.getWriter().println("<!DOCTYPE html>");
-          response.getWriter().println("<html xmlns=\"http://www.w3.org/1999/xhtml\" \n" +
-    "             xmlns:h=\"http://xmlns.jcp.org/jsf/html\">");
-          response.getWriter().println("<h:head>");
-          response.getWriter().println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"> </meta>");
-          response.getWriter().println("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" \n" +
-    "             integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\"> </link>");
-          response.getWriter().println("<title>BibliotecaTec</title>");            
-          response.getWriter().println("</h:head>");
-          response.getWriter().println("<h:body>");
-          response.getWriter().println("<div class=\"container mt-4 col-lg-7\">");
-          response.getWriter().println("<div class=\"card col-sm-7\" >");
-          response.getWriter().println("<div class=\"card-body\" class=\"card-body text-center\">");
-
-          response.getWriter().println("<form class=\"form-sign\" action=\"CancelarReserva.xhtml\" method=\"POST\">");
-          response.getWriter().println("<h2 class=\"card-body\">La reserva no existe</h2>");
-          response.getWriter().println("<input type=\"submit\" value=\"Volver\" class=\"btn btn-primary btn-block\" > </input>");                response.getWriter().println("</div>");
-          response.getWriter().println("</div>");
-
-          response.getWriter().println("</div>");
-
-          response.getWriter().println("</h:body>");
-          response.getWriter().println("</html>");
-        }
+      //si se completo la cancelacion
+      if(dao.cancelarReserva(idReserva)){
+        //se cancelo la reserva
+        mensaje.showMessage(response, "Reserva Cancelada", "CancelarReserva.xhtml");
+      }else{
+        //hubo un error 
+        mensaje.showMessage(response, "Hubo un error al cancelar la reserva", "CancelarReserva.xhtml");
+      }    
     }
   }
+  
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

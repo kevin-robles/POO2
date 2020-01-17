@@ -6,9 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utilidad.MostrarMensaje;
 
 public class ControladorInicioSesion extends HttpServlet {
   InicioSesionDao dao = new InicioSesionDao();
+  MostrarMensaje mensaje = new MostrarMensaje();
   
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,13 +59,13 @@ public class ControladorInicioSesion extends HttpServlet {
     String pass = request.getParameter("txtpass");
     String validacion = dao.validarUsuario(user, pass);
 
-    if("superUsuario".equals(validacion)){
-      request.getRequestDispatcher("Administrativo.xhtml").forward(request, response);   
+    if("superUsuario".equals(validacion) || "Administrativo".equals(validacion) ){
+      request.getRequestDispatcher("ControladorMenu?menu=Administrativo").forward(request, response);   
     }
     else if("Estudiante".equals(validacion)){
-      request.getRequestDispatcher("Estudiante.xhtml").forward(request, response);
+      request.getRequestDispatcher("ControladorMenu?menu=Estudiante").forward(request, response);
     }else{
-      request.getRequestDispatcher("index.xhtml").forward(request, response);
+      mensaje.showMessage(response, "Usuario no existe", "index.xhtml");
     }
   }
 
