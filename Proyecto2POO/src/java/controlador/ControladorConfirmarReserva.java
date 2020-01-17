@@ -1,3 +1,9 @@
+/**
+ * Clase para confirmar reserva
+ * 
+ * @author Daniel Quiros, Kevin Robles, Oscar Trejos
+ * @version 1.0
+ */
 package controlador;
 import dao.EstudianteDao;
 import dao.ReservaDao;
