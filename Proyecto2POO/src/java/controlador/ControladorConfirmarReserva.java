@@ -1,5 +1,5 @@
 /**
- * Clase para confirmar reserva
+ * Clase para administrar la confirmación de ùna reserva.
  * 
  * @author Daniel Quiros, Kevin Robles, Oscar Trejos
  * @version 1.0
