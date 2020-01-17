@@ -51,7 +51,6 @@ public class Reserva {
     this.horaFinal = pHoraFinal;
     this.organizador = pOrganizador;
     this.salaAsignada = pSalaAsignada;
-    ReservaDao reservaDao = new ReservaDao();
     this.idReserva = numeroReservas;
     participantes = new ArrayList<Participante>();
     incidentes = new ArrayList<Incidente>();
