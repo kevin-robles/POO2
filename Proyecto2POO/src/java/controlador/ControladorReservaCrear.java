@@ -72,7 +72,15 @@ public class ControladorReservaCrear extends HttpServlet {
     }
       
   }
-  
+  /**
+   * Método que muestra la confirmación de la reserva.
+   * @param response
+   * @param fechaSolicitud
+   * @param horaInicio
+   * @param horaFinal
+   * @param salasDisponibles
+   * @throws IOException 
+   */
   private void mostrarConfirmacion(HttpServletResponse response,String fechaSolicitud,String horaInicio,String horaFinal,ArrayList<String> salasDisponibles) throws IOException{
     //response.getWriter().println("<?xml version='1.0' encoding='UTF-8' ?>");
     response.getWriter().println("<!DOCTYPE html>");
