@@ -39,7 +39,7 @@ public class ControladorReservaCrear extends HttpServlet {
     String horaInicio = request.getParameter("txthorainicio");
     String horaFinal = request.getParameter("txthorafinal");
     String CapacidadMinimatxtx = request.getParameter("txtcapacidadminima");
-    String [] recursostxt = request.getParameterValues("recursos");
+    String[] recursostxt = request.getParameterValues("recursos");
     Date fechaSolicitud = null;
     int capacidadMinima = 0;
 
@@ -57,9 +57,14 @@ public class ControladorReservaCrear extends HttpServlet {
     }else{
       capacidadMinima =  Integer.parseInt(CapacidadMinimatxtx);
     }
+
     ArrayList<Recurso> recursos =  new ArrayList<Recurso>();
-    for (int i = 0; i < recursostxt.length; i++) {
-      recursos.add(new Recurso(recursostxt[i]));
+    
+    try{
+      for (int i = 0; i < recursostxt.length; i++) {
+        recursos.add(new Recurso(recursostxt[i]));
+      }
+    }catch(Exception e){
     }
 
     ArrayList<String> salasDisponibles = dao.obtenerSalasDisponibles(fechaSolicitud, horaInicio, horaFinal, capacidadMinima, recursos);
