@@ -9,12 +9,15 @@ import dao.ReservaDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Participante;
+import utilidad.EnviarCorreo;
 import utilidad.MostrarMensaje;
 
 public class ControladorReservaCancelar extends HttpServlet {
@@ -56,6 +59,18 @@ public class ControladorReservaCancelar extends HttpServlet {
 
       //validar si se puede cancelar por la hora
       if(!dao.validarCancelarReserva(idReserva)){
+        ArrayList<Participante> nuevaLista = dao.obtenerParticipantes(String.valueOf(idReserva));
+        
+        if(nuevaLista.size() > 0){
+          EnviarCorreo correo = new EnviarCorreo();
+          int contadorParticipantes = 0;
+          while(nuevaLista.size() > contadorParticipantes){
+            correo.enviarCorreo(nuevaLista.get(contadorParticipantes).getCorreo(),"Reunión "
+                + "Cancelada","La reunión en la sala " + String.valueOf(idReserva) + 
+                " ha sido cancelada");
+            contadorParticipantes++;
+          }
+        }
         mensaje.showMessage(response, "Se debe cancelar la reserva al menos una hora antes de su inicio", "CancelarReserva.xhtml");
         return;
       }
